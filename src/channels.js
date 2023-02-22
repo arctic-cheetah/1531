@@ -12,8 +12,3 @@ function channelsListV1 () {
 //Rachel
 function channelsListAllV1 () {
 }
-
-//Joules + Rachel
-function channelDetailsV1 () {
-
-}
