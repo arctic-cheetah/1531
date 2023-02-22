@@ -5,15 +5,16 @@
  * @param {number} channelId
  */ 
 
+//Xiang
 function channelJoinV1 (authUserId, channelId) {
 
 }
 
-//Todo
+//Xiang
 function channelInviteV1 () {
 
 }
-
+// Joules
 function channelMessagesV1 () {
 
 }
