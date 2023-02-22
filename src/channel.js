@@ -16,6 +16,7 @@ function channelInviteV1 () {
  * @param {number} authUserId
  * @param {number} channelId
  * @param {number} start
+ * @returns {messages: {}}
  */ 
 //Joules
 function channelMessagesV1 (authUserId, channelId, start) {
