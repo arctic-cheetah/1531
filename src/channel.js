@@ -39,7 +39,39 @@ function channelMessagesV1 (authUserId, channelId, start) {
     };
 }
 
-//Joules + Rachel
-function channelDetailsV1 () {
 
+// Given the authUserId and channelId
+// return information about the channel
+// such as the owner of the channel and the users inside the channel
+/**
+ * @param {number} authUserId
+ * @param {number} channelId
+ * @returns {channels: Object}
+ */ 
+//Joules + Rachel
+function channelDetailsV1 (authUserId, channelId) {
+    return {
+        name: 'AlisonChannel',
+        ownerMembers: 
+        [
+            {
+                uId: 1,
+                email: 'boost@lol.com.au',
+                nameFirst: 'Alison',
+                nameLast: 'Patman',
+                handleStr: 'AlisonPatman'
+            }
+        ],
+        allMembers: 
+        [
+            {
+                uId: 1,
+                email: 'boost@lol.com.au',
+                nameFirst: 'Alison',
+                nameLast: 'Patman',
+                handleStr: 'AlisonPatman'
+            }
+        ]
+
+    };
 }
