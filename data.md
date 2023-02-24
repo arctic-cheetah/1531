@@ -10,7 +10,7 @@ let data = {
         userName: 'AlisonPatman'
         email: 'boost@lol.com.au',
         status: 'Sleeping',
-        enrolledChannelsId : {1} //Keep track of the channels a user as enrolled in.
+        enrolledChannelsId : [1] //Keep track of the channels a user as enrolled in.
     },
     channel : 
     {
@@ -25,7 +25,7 @@ let data = {
             attachment : "https://wwww.insertURLHERE.com/test.png" //If files or photos attached in a message
             timeSent: 1, //When was the message sent in milliSeconds since UNIX-TIME
         },
-        usersIdEnrolled : {1} // Keep track of the users inside a channel
+        usersIdEnrolled : [1] // Keep track of the users inside a channel
     } 
 }
 ```
