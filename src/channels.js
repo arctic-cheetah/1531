@@ -43,7 +43,6 @@ function channelsListV1 (authUserId) {
  * @returns {channels: []} 
  */ 
 //Rachel
-<<<<<<< src/channels.js
 function channelsListAllV1 (authUserId) {
     //Logic:
     //Search through the dataBase for the authUserId
@@ -58,7 +57,3 @@ function channelsListAllV1 (authUserId) {
         ],
     };
 }
-=======
-function channelsListAllV1 () {
-}
->>>>>>> src/channels.js
