@@ -29,8 +29,8 @@ function channelsListV1 (authUserId) {
     return {
         channels: [
             {
-                channelName: "boost",
-                channelId: 1
+                channelId: 1,
+                name: "My Channel"
             }
         ]
     };
