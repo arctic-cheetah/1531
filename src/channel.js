@@ -1,7 +1,14 @@
 
 //Xiang
+//Use authUserId to join the channel.
+/**
+ * @param {number} authUserId
+ * @param {number} channelId
+ * @returns {}
+ */ 
 function channelJoinV1 (authUserId, channelId) {
 
+    return {};
 }
 
 //Xiang
