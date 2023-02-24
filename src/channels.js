@@ -36,6 +36,29 @@ function channelsListV1 (authUserId) {
     };
 }
 
+// Given the authUserId
+// return an array of channels for that user
+/**
+ * @param {number} authUserId
+ * @returns {channels: []} 
+ */ 
 //Rachel
+<<<<<<< src/channels.js
+function channelsListAllV1 (authUserId) {
+    //Logic:
+    //Search through the dataBase for the authUserId
+    //And fetch the channels for the respective authUser
+    
+    return {
+        channels: [
+            {
+                channelId: 1,
+                name: 'My Channel',
+            }
+        ],
+    };
+}
+=======
 function channelsListAllV1 () {
 }
+>>>>>>> src/channels.js
