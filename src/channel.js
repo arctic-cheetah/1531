@@ -45,12 +45,12 @@ function channelMessagesV1 (authUserId, channelId, start) {
             {
                 messageId: 1,
                 uId: 1,
-                text: "Hey everyone!",
-                timeStamp: 1000000
+                message: "Hello world",
+                timeStamp: 1582426789
             }
         ],
         start : 0,
-        end: 1000
+        end: 50
     };
 }
 
@@ -66,27 +66,25 @@ function channelMessagesV1 (authUserId, channelId, start) {
 //Joules + Rachel
 function channelDetailsV1 (authUserId, channelId) {
     return {
-        name: 'AlisonChannel',
-        ownerMembers: 
-        [
-            {
-                uId: 1,
-                email: 'boost@lol.com.au',
-                nameFirst: 'Alison',
-                nameLast: 'Patman',
-                handleStr: 'AlisonPatman'
-            }
+        name: 'Hayden',
+        ownerMembers: [
+          {
+            uId: 1,
+            email: 'example@gmail.com',
+            nameFirst: 'Hayden',
+            nameLast: 'Jacobs',
+            handleStr: 'haydenjacobs',
+          }
         ],
-        allMembers: 
-        [
-            {
-                uId: 1,
-                email: 'boost@lol.com.au',
-                nameFirst: 'Alison',
-                nameLast: 'Patman',
-                handleStr: 'AlisonPatman'
-            }
-        ]
-
-    };
+        allMembers: [
+          {
+            uId: 1,
+            email: 'example@gmail.com',
+            nameFirst: 'Hayden',
+            nameLast: 'Jacobs',
+            handleStr: 'haydenjacobs',
+          }
+        ],
+      }
+      
 }
