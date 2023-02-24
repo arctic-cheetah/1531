@@ -21,7 +21,7 @@ let data = {
             uId: 1,
             message: 'Hi everyone',
             timeSent: 1,
-        } 
+        },
         usersIdEnrolled : {1}
     } 
 }
