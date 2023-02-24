@@ -5,10 +5,10 @@
  * @param {number} authUserId
  * @param {string} name
  * @param {boolean} isPublic
- * @returns {channelId: } 
+ * @returns {channelId: number } 
  */ 
 //Rachel
-function channelsCreateV1 () {
+function channelsCreateV1 (authUserId, name, isPublic) {
     //Logic:
     //Creates a channel that contains information such as
     //authUserId, name of channel and whether it's public or not
