@@ -16,7 +16,7 @@ function channelsListV1 () {
  * @returns {channels: []} 
  */ 
 //Rachel
-function channelsListAllV1 () {
+function channelsListAllV1 (authUserId) {
     //Logic:
     //Search through the dataBase for the authUserId
     //And fetch the channels for the respective authUser
