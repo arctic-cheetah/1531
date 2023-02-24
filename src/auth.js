@@ -8,7 +8,7 @@
   * @param {string} nameLast 
   * @returns {authUserId: number}
 */
-function AuthRegisterV1 (email, password, nameFirst, nameLast) {
+function authRegisterV1 (email, password, nameFirst, nameLast) {
     return {
       authUserId: 1 
     }   
@@ -23,7 +23,7 @@ function AuthRegisterV1 (email, password, nameFirst, nameLast) {
   * @returns {authUserId: number}
 */
 
-function AuthLoginV1 (email, password) {
+function authLoginV1 (email, password) {
     return { 
       authUserId: 1 
     }       
