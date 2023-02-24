@@ -5,8 +5,16 @@ function channelJoinV1 (authUserId, channelId) {
 }
 
 //Xiang
-function channelInviteV1 () {
-
+//Invite Uid into the channel using channelid
+/**
+ * @param {number} authUserId
+ * @param {number} channelId
+ * @param {number} uId
+ * @returns {}
+ */ 
+function channelInviteV1 ( authUserId, channelId, uId) {
+    
+    return { };
 }
 
 
