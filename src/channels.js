@@ -40,7 +40,7 @@ function channelsListV1 (authUserId) {
 // return an array of channels for that user
 /**
  * @param {number} authUserId
- * @returns {channels: []} 
+ * @returns {channels: [{}]} 
  */ 
 //Rachel
 function channelsListAllV1 (authUserId) {
