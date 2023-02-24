@@ -27,8 +27,3 @@ function channelsListV1 (authUserId) {
 //Rachel
 function channelsListAllV1 () {
 }
-
-//Joules + Rachel
-function channelDetailsV1 () {
-
-}

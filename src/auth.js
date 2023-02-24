@@ -12,7 +12,7 @@ function AuthRegisterV1 (email, password, nameFirst, nameLast) {
     return {
       authUserId: 1 
     }   
-  }
+}
   
 //Alison
 /**
@@ -27,5 +27,5 @@ function AuthLoginV1 (email, password) {
     return { 
       authUserId: 1 
     }       
-  }
+}
   
