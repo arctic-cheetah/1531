@@ -44,12 +44,12 @@ function channelMessagesV1 (authUserId, channelId, start) {
         messages: [
             {
                 messageId: 1,
-                uId: authUserId,
+                uId: 1,
                 text: "Hey everyone!",
                 timeStamp: 1000000
             }
         ],
-        start : start,
+        start : 0,
         end: 1000
     };
 }
