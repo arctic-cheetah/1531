@@ -31,7 +31,7 @@ function channelInviteV1 ( authUserId, channelId, uId) {
  * @param {number} authUserId
  * @param {number} channelId
  * @param {number} start
- * @returns {messages: {}}
+ * @returns {messages: [], start: number, end: number}
  */ 
 //Joules
 function channelMessagesV1 (authUserId, channelId, start) {
@@ -61,7 +61,7 @@ function channelMessagesV1 (authUserId, channelId, start) {
 /**
  * @param {number} authUserId
  * @param {number} channelId
- * @returns {channels: Object}
+ * @returns {name: string, ownerMembers: [], allMembers: []}
  */ 
 //Joules + Rachel
 function channelDetailsV1 (authUserId, channelId) {
