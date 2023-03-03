@@ -1,4 +1,4 @@
-//Alison
+const ERROR = {error : "error"};
 /**
   * <Register a new user, when the email, name, first name and last name is given and return the authUserId>
   * 
@@ -35,7 +35,7 @@ function AuthLoginV1 (email, password) {
    return ERROR;
   } else {
    if (data.users[email].password !== password){
-       return ERROR
+       return ERROR;
    } else{
        return {
            authUserId: data.users[email].userId
