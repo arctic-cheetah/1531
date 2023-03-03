@@ -33,13 +33,13 @@ function AuthLoginV1 (email, password) {
   const data = getData();
   if(!(email in data.users)){
    return ERROR;
-  } else {
-   if (data.users[email].password !== password){
-       return ERROR;
-   } else{
-       return {
-           authUserId: data.users[email].userId
-       }
-   }
+  } 
+  if (data.users[email].password !== password){
+      return ERROR;
+  } else{
+      return {
+          authUserId: data.users[email].userId
+      }
   }
+  
 }
