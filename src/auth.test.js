@@ -20,7 +20,7 @@ describe('authRegisterV1', () => {
     expect(authRegisterV1(check)).toStrictEqual(ERROR);
   });
   
-  test('Address already used', () => {
+  test('Email address already used', () => {
     const check = {email : "Alison@hello.com", password: "gihsbeFFKLWN23", nameFirst: "Alison", nameLast: "Patman"};
     expect(authRegisterV1(check)).toStrictEqual(ERROR);
   });
