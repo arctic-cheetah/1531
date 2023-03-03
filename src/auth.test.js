@@ -35,12 +35,12 @@ describe('authRegisterV1', () => {
   });
 
   test('firstName is not between 1 to 50 inclusive', () => {
-    const check = {email : "Alison@hello.com", password: "123456", nameFirst: "E", nameLast: "Patman"};
+    const check = {email : "Alison@hello.com", password: "123456", nameFirst: "", nameLast: "Patman"};
     expect(authRegisterV1(check)).toStrictEqual(ERROR);
   
   });
   test('lastName is not between 1 to 50 inclusive', () => {
-    const check = {email : "Alison@hello.com", password: "123456", nameFirst: "Alison", nameLast: "B"};
+    const check = {email : "Alison@hello.com", password: "123456", nameFirst: "Alison", nameLast: ""};
     expect(authRegisterV1(check)).toStrictEqual(ERROR);
   });
   
