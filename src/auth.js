@@ -9,11 +9,7 @@
   * @returns {authUserId: number}
 */
 
-/* 
-authLoginV1: Once given a currently registered users email and password, 
-the users: authUserId is returned. If the entered email does not belong 
-to a user or the inputted password is incorrect {error: 'error'} will be returned.
-*/
+
 
 function AuthRegisterV1 (email, password, nameFirst, nameLast) {
 
@@ -27,7 +23,11 @@ function AuthRegisterV1 (email, password, nameFirst, nameLast) {
   * @param {string} password 
   * @returns {authUserId: number}
 */
-
+/* 
+authLoginV1: Once given a currently registered users email and password, 
+the users: authUserId is returned. If the entered email does not belong 
+to a user or the inputted password is incorrect {error: 'error'} will be returned.
+*/
 function AuthLoginV1 (email, password) {
 
   const data = getData();
