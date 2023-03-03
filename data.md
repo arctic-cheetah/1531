@@ -1,32 +1,47 @@
 ```javascript
 let data = {
-    user : 
-    {
-        uId: 1, 
-        //authUserId: 1 may need to be added in future because this is an authToken
-        //But it is currently used as an userId
-        nameFirst: 'Alison',
-        nameLast: 'Patman',
-        userName: 'AlisonPatman'
-        email: 'boost@lol.com.au',
-        status: 'Sleeping',
-        enrolledChannelsId : [1] //Keep track of the channels a user as enrolled in.
-    },
-    channel : 
-    {
-        channelId: 1,
-        channelName: 'boost_chat'
-        channelOwner: {},
-        messages: 
+    users : 
+    [
         {
-            messageId: 0,
-            uId: 1,
-            message: 'Hi everyone',
-            attachment : "https://wwww.insertURLHERE.com/test.png" //If files or photos attached in a message
-            timeSent: 1, //When was the message sent in milliSeconds since UNIX-TIME
+            uId: 1, 
+            //authUserId: 1 may need to be added in future because this is an authToken
+            //But it is currently used as an userId
+            nameFirst: 'Alison',
+            nameLast: 'Patman',
+            userName: 'AlisonPatman'
+            email: 'boost@lol.com.au',
+            status: 'Sleeping',
+            enrolledChannelsId : [1] //Keep track of the channels a user as enrolled in.
         },
-        usersIdEnrolled : [1] // Keep track of the users inside a channel
-    } 
+         {
+            uId: 2, 
+            //authUserId: 1 may need to be added in future because this is an authToken
+            //But it is currently used as an userId
+            nameFirst: 'Alison',
+            nameLast: 'Patman',
+            userName: 'AlisonPatman'
+            email: '1234@lol.com.au',
+            status: 'Sleeping',
+            enrolledChannelsId : [1] //Keep track of the channels a user as enrolled in.
+        }
+    ],
+    channels : 
+    [
+        {
+            channelId: 1,
+            channelName: 'boost_chat'
+            channelOwner: {},
+            messages: 
+            {
+                messageId: 0,
+                uId: 1,
+                message: 'Hi everyone',
+                attachment : "https://wwww.insertURLHERE.com/test.png" //If files or photos attached in a message
+                timeSent: 1, //When was the message sent in milliSeconds since UNIX-TIME
+            },
+            usersIdEnrolled : [1] // Keep track of the users inside a channel
+        }
+    ] 
 }
 ```
 
