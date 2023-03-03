@@ -41,4 +41,45 @@ describe('authRegisterV1', () => {
   });
   
 
+
 })  
+
+
+describe('authLoginV1', () => {
+  //right cases:
+
+  test ( 'Testing login', () => {
+    cleardata();
+    const userRegister = authRegisterV1('joseph@unsw.edu.au', '123456', 'Joseph', 'Caspar');
+    const userRegisterId = userRegister.userId;
+    const userLogin = authLoginV1('joseph@unsw.edu.au', '123456');
+    const userLoginId = userLogin.userId;
+    expect(userLoginId).toBe(userRegisterId);
+  });
+
+  //Error cases:
+
+  test ( 'Testing login - email that hasnt been used', () => {
+    cleardata();
+    const userLogin = authLoginV1('jcasp@unsw.edu.au', 'gamer189');
+    expect(userLogin).toStrictEqual({ERROR});
+  });
+
+  test ( 'Testing login - password not correct ' , () => {
+    cleardata();
+    const userRegister = authRegisterV1('joseph@unsw.edu.au', '123456', 'Joseph', 'Caspar');
+    const userRegisterPassword = userRegister.password;
+    const userLogin = authLoginV1('joseph@unsw.edu.au', '123489');
+    const userLoginPassword = userLogin.password;
+    expect(userLogin).toStrictEqual({ERROR});
+  });
+
+
+  test( 'Testing Login - email entered does not belong to a user' , () => {
+    cleardata();
+    const userRegister = authRegisterV1('joseph@unsw.edu.au', '123456', 'Joseph', 'Caspar');
+    const check = AuthLoginV1( 'xiang.ren@unsw.edu.au' , '123456')
+    expect(check).to =toStrictEqual({ERROR});
+  })
+
+})
