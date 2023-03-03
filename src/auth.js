@@ -1,4 +1,4 @@
-//Alison
+const ERROR = {error : "error"};
 /**
   * <Register a new user, when the email, name, first name and last name is given and return the authUserId>
   * 
@@ -8,10 +8,11 @@
   * @param {string} nameLast 
   * @returns {authUserId: number}
 */
-function authRegisterV1 (email, password, nameFirst, nameLast) {
-    return {
-      authUserId: 1 
-    }   
+
+
+
+function AuthRegisterV1 (email, password, nameFirst, nameLast) {
+
 }
   
 //Alison
@@ -22,10 +23,24 @@ function authRegisterV1 (email, password, nameFirst, nameLast) {
   * @param {string} password 
   * @returns {authUserId: number}
 */
+/* 
+authLoginV1: Once given a currently registered users email and password, 
+the users: authUserId is returned. If the entered email does not belong 
+to a user or the inputted password is incorrect {error: 'error'} will be returned.
+*/
+function AuthLoginV1 (email, password) {
 
-function authLoginV1 (email, password) {
-    return { 
-      authUserId: 1 
-    }       
-}
+  const data = getData();
+  if (!(email in data.users)) {
+   return ERROR;
+  } 
+  if (data.users[email].password !== password) {
+      return ERROR;
+  }
+  else{
+      return {
+          authUserId: data.users[email].userId
+      }
+  }
   
+}
