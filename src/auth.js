@@ -1,5 +1,5 @@
 import {isEmail} from 'validator/lib/isEmail';
-import {getData} from "./dataStore.js";
+import {getData} from "./dataStore";
 import { v4 as uuidv4 } from 'uuid';
 
 const ERROR = {error : "error"};
@@ -15,7 +15,7 @@ const ERROR = {error : "error"};
   * @returns {authUserId: number}
 */
 
-function AuthRegisterV1 (email, password, nameFirst, nameLast) {
+export function authRegisterV1 (email, password, nameFirst, nameLast) {
   const data = getData();
   //Check email address
   if (isEmail(email) === false) {
@@ -44,14 +44,14 @@ function AuthRegisterV1 (email, password, nameFirst, nameLast) {
   let nameFirstFiltered = nameFirst.replace(/\W/g, "").toLower();
   let nameLastFiltered = nameLast.replace(/\W/g, "").toLower();
   let newUserName = nameFirstFiltered + nameLastFiltered;
-  
+
   //if userName is longer than 20 characters, cut off at 20.
   newUserName = newUserName.slice(0, 20);
   //Check if name has been taken by user
   //This is buggy!
   let nameFound = data.users.filter(e => e.userName === newUserName);
   if (nameFound.length > 1) {
-    // Add a final number to make the user name unique
+    //Add a final number to make the user name unique
     newUserName = newUserName.concat(nameFound.length);
   }
 
@@ -88,7 +88,7 @@ authLoginV1: Once given a currently registered users email and password,
 the users: authUserId is returned. If the entered email does not belong 
 to a user or the inputted password is incorrect {error: 'error'} will be returned.
 */
-function AuthLoginV1 (email, password) {
+export function authLoginV1 (email, password) {
 
   const data = getData();
   if (!(email in data.users)) {// This is incorrect, assumes one user only
@@ -104,4 +104,3 @@ function AuthLoginV1 (email, password) {
   } 
 }
 
-export { AuthLoginV1, AuthRegisterV1 }
