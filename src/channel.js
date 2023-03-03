@@ -31,7 +31,7 @@ function channelInviteV1 ( authUserId, channelId, uId) {
  * @param {number} authUserId
  * @param {number} channelId
  * @param {number} start
- * @returns {messages: {}}
+ * @returns {messages: [], start: number, end: number}
  */ 
 //Joules
 function channelMessagesV1 (authUserId, channelId, start) {
@@ -44,13 +44,13 @@ function channelMessagesV1 (authUserId, channelId, start) {
         messages: [
             {
                 messageId: 1,
-                uId: authUserId,
-                text: "Hey everyone!",
-                timeStamp: 1000000
+                uId: 1,
+                message: "Hello world",
+                timeStamp: 1582426789
             }
         ],
-        start : start,
-        end: 1000
+        start : 0,
+        end: 50
     };
 }
 
@@ -61,32 +61,30 @@ function channelMessagesV1 (authUserId, channelId, start) {
 /**
  * @param {number} authUserId
  * @param {number} channelId
- * @returns {channels: Object}
+ * @returns {name: string, ownerMembers: [], allMembers: []}
  */ 
 //Joules + Rachel
 function channelDetailsV1 (authUserId, channelId) {
     return {
-        name: 'AlisonChannel',
-        ownerMembers: 
-        [
-            {
-                uId: 1,
-                email: 'boost@lol.com.au',
-                nameFirst: 'Alison',
-                nameLast: 'Patman',
-                handleStr: 'AlisonPatman'
-            }
+        name: 'Hayden',
+        ownerMembers: [
+          {
+            uId: 1,
+            email: 'example@gmail.com',
+            nameFirst: 'Hayden',
+            nameLast: 'Jacobs',
+            handleStr: 'haydenjacobs',
+          }
         ],
-        allMembers: 
-        [
-            {
-                uId: 1,
-                email: 'boost@lol.com.au',
-                nameFirst: 'Alison',
-                nameLast: 'Patman',
-                handleStr: 'AlisonPatman'
-            }
-        ]
-
-    };
+        allMembers: [
+          {
+            uId: 1,
+            email: 'example@gmail.com',
+            nameFirst: 'Hayden',
+            nameLast: 'Jacobs',
+            handleStr: 'haydenjacobs',
+          }
+        ],
+      }
+      
 }

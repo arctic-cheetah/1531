@@ -29,8 +29,8 @@ function channelsListV1 (authUserId) {
     return {
         channels: [
             {
-                channelName: "boost",
-                channelId: 1
+                channelId: 1,
+                name: "My Channel"
             }
         ]
     };
@@ -40,10 +40,9 @@ function channelsListV1 (authUserId) {
 // return an array of channels for that user
 /**
  * @param {number} authUserId
- * @returns {channels: []} 
+ * @returns {channels: [{}]} 
  */ 
 //Rachel
-<<<<<<< src/channels.js
 function channelsListAllV1 (authUserId) {
     //Logic:
     //Search through the dataBase for the authUserId
@@ -58,7 +57,3 @@ function channelsListAllV1 (authUserId) {
         ],
     };
 }
-=======
-function channelsListAllV1 () {
-}
->>>>>>> src/channels.js
