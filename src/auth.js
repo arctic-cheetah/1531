@@ -31,12 +31,13 @@ to a user or the inputted password is incorrect {error: 'error'} will be returne
 function AuthLoginV1 (email, password) {
 
   const data = getData();
-  if(!(email in data.users)){
+  if (!(email in data.users)) {
    return ERROR;
   } 
-  if (data.users[email].password !== password){
+  if (data.users[email].password !== password) {
       return ERROR;
-  } else{
+  }
+  else{
       return {
           authUserId: data.users[email].userId
       }
