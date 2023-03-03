@@ -22,7 +22,6 @@ const getUUIDv1 = () => {
 */
 export function authRegisterV1 (email, password, nameFirst, nameLast) {
   const data = getData();
-  
 
   //Check email address
   if (isEmail(email) === false) {
