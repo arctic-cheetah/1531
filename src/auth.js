@@ -1,5 +1,7 @@
 import {isEmail} from 'validator/lib/isEmail';
-import {getData} from "./dataStore.js"
+import {getData} from "./dataStore.js";
+import { v4 as uuidv4 } from 'uuid';
+
 const ERROR = {error : "error"};
 
 /**
@@ -36,6 +38,41 @@ function AuthRegisterV1 (email, password, nameFirst, nameLast) {
   if (1 < nameLast.length || nameLast.length > 50) {
     return ERROR;
   }
+  
+  //Generate user name from first and last name.
+  //Remove non alphanumeric chars
+  let nameFirstFiltered = nameFirst.replace(/\W/g, "").toLower();
+  let nameLastFiltered = nameLast.replace(/\W/g, "").toLower();
+  let newUserName = nameFirstFiltered + nameLastFiltered;
+  
+  //if userName is longer than 20 characters, cut off at 20.
+  newUserName = newUserName.slice(0, 20);
+  //Check if name has been taken by user
+  //This is buggy!
+  let nameFound = data.users.filter(e => e.userName === newUserName);
+  if (nameFound.length > 1) {
+    // Add a final number to make the user name unique
+    newUserName = newUserName.concat(nameFound.length);
+  }
+
+  //Generate new user ID
+  let uId = uuidv4();
+
+  //Is the dataStore initially empty?
+  if (Object.keys(data).length === 0) {
+    setData({users : [] , channels: []});
+  }
+  else{
+    //Create new account
+    data.users.push({
+      uId,
+      nameFirst,
+      nameLast,
+      email,
+    });
+  }
+
+  return {authUserId: uId}
 
 }
   
@@ -58,12 +95,12 @@ function AuthLoginV1 (email, password) {
    return ERROR;
   } 
   if (data.users[email].password !== password) {
-      return ERROR;
+    return ERROR;
   }
   else{
-      return {
-          authUserId: data.users[email].userId
-      }
+    return {
+      authUserId: data.users[email].userId
+    }
   } 
 }
 

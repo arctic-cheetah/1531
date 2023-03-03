@@ -12,6 +12,17 @@ let data = {
             email: 'boost@lol.com.au',
             status: 'Sleeping',
             enrolledChannelsId : [1] //Keep track of the channels a user as enrolled in.
+        },
+         {
+            uId: 2, 
+            //authUserId: 1 may need to be added in future because this is an authToken
+            //But it is currently used as an userId
+            nameFirst: 'Alison',
+            nameLast: 'Patman',
+            userName: 'AlisonPatman'
+            email: '1234@lol.com.au',
+            status: 'Sleeping',
+            enrolledChannelsId : [1] //Keep track of the channels a user as enrolled in.
         }
     ],
     channels : 
