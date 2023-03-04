@@ -2,12 +2,12 @@ import isEmail from 'validator/lib/isEmail.js';
 import {getData} from "./dataStore.js";
 
 const ERROR = {error : "error"};
-const MAX_INT32 = 0xFFFFFFFFFFFFFFFF;
+const MAX_INT = 0xFFFFFFFF;
 const MIN_INT = 1;
 
 //Return a new UUID
 const getUUIDv1 = () => {
-  return Math.floor(Math.random(Date.now()) * (MAX_INT32 - MIN_INT)) + MIN_INT;
+  return Math.floor(Math.random(Date.now()) * (MAX_INT - MIN_INT)) + MIN_INT;
 };
 
 /**
