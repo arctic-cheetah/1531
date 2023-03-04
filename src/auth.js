@@ -45,33 +45,43 @@ export function authRegisterV1 (email, password, nameFirst, nameLast) {
     return ERROR;
   }
   
+  //Cannot test below because userDetailsV1 not completed
+
+
   //Generate user name from first and last name.
   //Convert to lowercase
   //Remove non alphanumeric chars
   let nameFirstFiltered = nameFirst.toLowerCase().replace(/\W/g, "");
   let nameLastFiltered = nameLast.toLowerCase().replace(/\W/g, "");
-  let newUserName = nameFirstFiltered + nameLastFiltered;
+  let userName = nameFirstFiltered + nameLastFiltered;
 
   //if userName is longer than 20 characters, cut off at 20.
-  newUserName = newUserName.slice(0, 20);
-  //Check if name has been taken by user
+  //Check if 20 character length name has been taken by user
+
   //Test if this is buggy!
-  let nameFound = data.users.filter(e => e.userName === newUserName);
-  if (nameFound.length > 1) {
-    //Add a final number to make the user name unique
-    newUserName = newUserName.concat(nameFound.length);
+  if (userName.length >= 20) {
+    userName = userName.slice(0, 20);
+    let nameFound = data.users.filter(e => e.userName.matchAll(userName));
+    if (nameFound.length > 1) {
+      //Add a final number to make the user name unique
+      userName = userName.concat(nameFound.length);
+    }
   }
+  
   //Generate new user ID
   let uId = getUUIDv1();
 
   //Is the dataStore initially empty?
   //Add permision for global owner
   // if (Object.keys(data).length === 0) {
-  //   setData({users : [] , channels: []});
+  //   uId = 1;
   // }
+
+
   //Create new account
   data.users.push({
     uId,
+    userName,
     nameFirst,
     nameLast,
     email,
@@ -96,17 +106,16 @@ to a user or the inputted password is incorrect {error: 'error'} will be returne
 export function authLoginV1 (email, password) {
 
   const data = getData();
-  // data.users.filter(e => e.email === email); Bug fix
-  if (!(email in data.users)) {// This is incorrect, assumes one user only
+  
+  let userGet = data.users.filter(e => e.email === email);
+  if (userGet.length === 0) {// This is incorrect, assumes one user only
    return ERROR;
   } 
-  if (data.users[email].password !== password) {
+  if (userGet[0].password !== password) {
     return ERROR;
   }
-  else{
-    return {
-      authUserId: data.users[email].userId
-    }
+  else {
+    return {authUserId: userGet[0].uId};
   } 
 }
 
