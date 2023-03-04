@@ -35,7 +35,7 @@ let data = {
       channelId: 1,
       channelName: 'boost_chat',
       channelOwner: {},
-      iisPublic: true,
+      iisPublic: true, 
       messages: 
       {
         messageId: 0,
