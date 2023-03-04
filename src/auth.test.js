@@ -60,6 +60,8 @@ describe('authRegisterV1', () => {
   });
   //Can only test edge case for name taken by user if userProfileV1() is completed!
 
+
+  
   //Main case:
   test('New user 1', () => {
     const user1 = {email : "Alison@hello.com", password: "ianfeDAWD24", nameFirst: "Alison", nameLast: "Patman"};
