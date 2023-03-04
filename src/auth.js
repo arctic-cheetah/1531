@@ -108,7 +108,7 @@ export function authLoginV1 (email, password) {
   const data = getData();
   
   let userGet = data.users.filter(e => e.email === email);
-  if (userGet.length === 0) {// This is incorrect, assumes one user only
+  if (userGet.length === 0) {
    return ERROR;
   } 
   if (userGet[0].password !== password) {
