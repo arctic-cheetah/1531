@@ -60,6 +60,8 @@ describe('authRegisterV1', () => {
   });
   //Can only test edge case for name taken by user if userProfileV1() is completed!
 
+
+  
   //Main case:
   test('New user 1', () => {
     const user1 = {email : "Alison@hello.com", password: "ianfeDAWD24", nameFirst: "Alison", nameLast: "Patman"};
@@ -97,7 +99,7 @@ describe('authLoginV1', () => {
   test ( 'Testing login - email that hasnt been used', () => {
 
     const userLogin = authLoginV1('jcasp@unsw.edu.au', 'gamer189');
-    expect(userLogin).toStrictEqual({ERROR});
+    expect(userLogin).toStrictEqual(ERROR);
 
   });
 
@@ -109,7 +111,7 @@ describe('authLoginV1', () => {
     const userLogin = authLoginV1('joseph@unsw.edu.au', '123489');
     const userLoginPassword = userLogin.password;
 
-    expect(userLogin).toStrictEqual({ERROR});
+    expect(userLogin).toStrictEqual(ERROR);
 
   });
 
@@ -119,7 +121,7 @@ describe('authLoginV1', () => {
     const userRegister = authRegisterV1('joseph@unsw.edu.au', '123456', 'Joseph', 'Caspar');
     const user = authLoginV1( 'xiang.ren@unsw.edu.au' , '123456')
     
-    expect(user).to =toStrictEqual({ERROR});
+    expect(user).toStrictEqual(ERROR);
   })
 
 })
