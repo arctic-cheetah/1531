@@ -17,42 +17,25 @@ beforeEach(() => {
 
 describe('userProfileV1', () => {
     // Error cases:
-
-    test('non existing authuserId and non existing uId in empty dataStore', () => {
+    test('non existing authuserId and non existing uId', () => {
         let uId = 10;
         let autherUserId = 8;
         expect(userProfileV1(uId, autherUserId)).toStrictEqual(ERROR);
-    });
-/*
-    test('non existing authUserId and non existing uId in non-empty dataStore', () => {
-        let user1 = {email : "Alison@hello.com", password : "ianfeDAWD24", nameFirst: "Alison", nameLast: "Patman"};
-        let user1Auth = authRegisterV1(user1.email, user1.password, user1.nameFirst, user1.nameLast);
-        let authUserId = user1Auth - 100;
-        expect(userProfileV1(authUserId, authUserId)).toStrictEqual(ERROR);
-    });
-
-    // Edge cases:
-    test('uId and autherUserId are different', () => {
-        let user1 = {email : "Alison@hello.com", password : "ianfeDAWD24", nameFirst: "Alison", nameLast: "Patman"};
-        let user1Auth = authRegisterV1(user1.email, user1.password, user1.nameFirst, user1.nameLast);
-        let authUserId = user1Auth - 100;
-        let uId = user1Auth - 20;
-        expect(userProfileV1(authUserId, uId)).toStrictEqual(ERROR);
     });
 
     // Main cases:
     test('correct output', () => {
         let user1 = {email : "Alison@hello.com", password : "ianfeDAWD24", nameFirst: "Alison", nameLast: "Patman"};
         let user1Auth = authRegisterV1(user1.email, user1.password, user1.nameFirst, user1.nameLast);
-        expect(userProfileV1(user1Auth, user1Auth)).toStrictEqual({
+        expect(userProfileV1(user1Auth.authUserId, user1Auth.authUserId)).toStrictEqual({
             user : {
-                uId : user1Auth,
+                uId : user1Auth.authUserId,
                 email : user1.email,
                 nameFirst : user1.nameFirst,
                 nameLast : user1.nameLast,
-                handleStr : user1.handleStr,
+                handleStr : "alisonpatman",
             }
         });
     });
-    */
+    
 });
