@@ -13,6 +13,7 @@ let data = {
       userName: 'AlisonPatman',
       email: 'boost@lol.com.au',
       status: 'Sleeping',
+      password: "lolLOL2320",
       enrolledChannelsId : [1] //Keep track of the channels a user as enrolled in.
     },
     {
@@ -24,6 +25,7 @@ let data = {
       userName: 'AlisonPatman',
       email: '1234@lol.com.au',
       status: 'Sleeping',
+      password: "akfnGND23",
       enrolledChannelsId : [1] //Keep track of the channels a user as enrolled in.
     }
   ],
