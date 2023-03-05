@@ -89,14 +89,48 @@ describe('channelsListV1', () => {
 }); 
 
 describe('channelsListAllV1', () => {
+  // Error cases:
+  test('Non-existent userID', () => {
+    const user1 = authRegisterV1('Ashe@unsw.edu.au', '123456', 'Ashe', 'Ruby');
+    const channel1 = channelsCreateV1(user1.authUserId, 'channel_1', true);
+    expect(channelsListV1(-1E5)).toStrictEqual(ERROR);
+  });
 
-  //Error cases:
-  
-  //Edge case:
+  // Edge case:
 
-  //Main case:
-  
-}); 
+  // Main case:
+  test('User 1 and 2 creates their channels. List all channels for user1', () => {
+    const user1 = authRegisterV1('Ashe@unsw.edu.au', '123456', 'Ashe', 'Ruby');
+    const user2 = authRegisterV1('XiangRen@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const channel1 = channelsCreateV1(user1.authUserId, 'channel_1', true);
+    const channel2 = channelsCreateV1(user2.authUserId, 'channel_2', true);
+    console.log(channelsListAllV1(user1.authUserId));
+    expect(channelsListAllV1(user1.authUserId)).toEqual({ channels: [ { channelId: channel1.channelId, name: 'channel_1' } , { channelId: channel2.channelId, name: 'channel_2' }] });
+  });
+
+
+  test('List all channels. Only one in the database', () => {
+    const user = authRegisterV1('Xiangren@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const channel = channelsCreateV1(user.authUserId, 'channel_1', true);
+    expect(channelsListAllV1(user.authUserId)).toMatchObject({ channels: [{ channelId: channel.channelId, name: 'channel_1' }] });
+  });
+  test('List all channels. Two in the database ', () => {
+    const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const channel1 = channelsCreateV1(user.authUserId, 'channel_1', true);
+    const channel2 = channelsCreateV1(user.authUserId, 'channel_2', true);
+    expect(channelsListAllV1(user.authUserId)).toEqual({ channels: [{ channelId: channel1.channelId, name: 'channel_1' }, { channelId: channel2.channelId, name: 'channel_2' }] });
+  });
+  test('List all channels. Three in the database ', () => {
+    const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const channel1 = channelsCreateV1(user.authUserId, 'channel_1', true);
+    const channel2 = channelsCreateV1(user.authUserId, 'channel_2', true);
+    const channel3 = channelsCreateV1(user.authUserId, 'channel_3', true);
+
+    expect(channelsListAllV1(user.authUserId)).toEqual({ channels: [{ channelId: channel1.channelId, name: 'channel_1' }, { channelId: channel2.channelId, name: 'channel_2' }, { channelId: channel3.channelId, name: 'channel_3' }] });
+  });
+
+
+});
 
 
 
