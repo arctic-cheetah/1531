@@ -1,4 +1,5 @@
 <<<<<<< HEAD
+<<<<<<< HEAD
 import {
   channelsCreateV1,
   channelsListV1,
@@ -152,6 +153,8 @@ describe('channelsListAllV1', () => {
 
 });
 =======
+=======
+>>>>>>> master
 import {
     channelsCreateV1, 
     channelsListV1, 
@@ -310,4 +313,7 @@ describe('channelsListAllV1', () => {
 
 
 
+<<<<<<< HEAD
+>>>>>>> master
+=======
 >>>>>>> master
