@@ -14,7 +14,7 @@ let data = {
       email: 'boost@lol.com.au',
       status: 'Sleeping',
       password: "lolLOL2320",
-      enrolledChannelsId : [1] //Keep track of the channels a user as enrolled in.
+      enrolledChannelsId : [1,2,3,4,5] //Keep track of the channels a user as enrolled in.
     },
     {
       uId: 2, 

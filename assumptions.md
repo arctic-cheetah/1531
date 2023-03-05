@@ -18,9 +18,7 @@ user: {
 
 ###### 4) Assume channelId is a unique id. Our implementation increases starts from 0 and increases by 1 with every new channel id
 
-###### 5) Assume public and private channels have the same data structure
-
-###### 6) Assume channelId has a one-one relation with users.enrolledChannelsId. ie; you cannot be enrolled twice in the same channel
+###### 5) Assume channelId has a one-one relation with users.enrolledChannelsId. ie; you cannot be enrolled twice in the same channel
 
 
 # ----------------------------------------------------------
