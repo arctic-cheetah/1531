@@ -94,23 +94,24 @@ function channelsListV1 (authUserId) {
 }
 
 // Given the authUserId
-// return an array of channels for that user
+// return an array of all channels of both public and private
 /**
  * @param {number} authUserId
- * @returns {channels: [{}]} 
+ * @returns {channels: [ {channelId: number, name: string} ] }
  */ 
-//Rachel
 function channelsListAllV1 (authUserId) {
-    //Logic:
-    //Search through the dataBase for the authUserId
-    //And fetch the channels for the respective authUser
-    
-    return {
-        channels: [
-            {
-                channelId: 1,
-                name: 'My Channel',
-            }
-        ],
-    };
+  const data = getData();
+  //User does not exist
+  let foundUser = data.users.filter(e => e.uId === authUserId);
+  if (foundUser.length === 0) {
+    return ERROR;
+  }
+
+  //Fetch the data from all the channels, including private ones
+  let res = [];
+  data.channels.forEach(e => {
+    res.push({channelId : e.channelId, name : e.channelName});
+  });
+
+  return { channels : res };
 }
