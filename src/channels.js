@@ -61,20 +61,36 @@ function channelsCreateV1 (authUserId, name, isPublic) {
 // return all the channels the user has enrolled in
 /**
  * @param {number} authUserId
- * @returns {channels: [{}]}
+ * @returns {
+ *  channels: [ {channelId: number, name: string} ] 
+ * }
  */ 
-//Joules
 function channelsListV1 (authUserId) {
-    //Go through the data base and fetch the user's channels
-    //let channels = dataBase.channel.find(e => e.users.find(authUserId) == authUserId)
-    return {
-        channels: [
-            {
-                channelId: 1,
-                name: "My Channel"
-            }
-        ]
-    };
+  //Go through the data base and fetch the user's channels
+  const data = getData();
+
+  //Does authUserId exist?
+  let foundUser = data.users.filter(e => e.uId === authUserId);
+  if (foundUser.length === 0) {
+    return ERROR;
+  }
+
+  //Fetch the list of channelId the user is enrolled in  
+  let userChannels = foundUser[0].enrolledChannelsId;                                               //let channels = data.channels.find(e => e.users.find(authUserId) == authUserId);
+  let res = [];
+
+  //ASSUMPTION: 
+  //Since channelId increases by 1, there is unique 1-1 relation. 
+  //we can quickly accessing channel data via an array
+
+  userChannels.forEach(e => {
+    let c_data = data.channels[e];
+    //Add condition to fetch private/public channels in future
+    res.push({channelId: c_data.channelId, name: c_data.channelName});
+  });
+  // console.log(res);
+  return { channels : res };
+  
 }
 
 // Given the authUserId
