@@ -1,5 +1,7 @@
 export {channelsCreateV1, channelsListV1, channelsListAllV1};
-import {getData} from "./dataStore"
+import {getData, setData} from "./dataStore"
+
+const ERROR = {error : "error"};
 // Given the authUserId, name and isPublic
 // return the channelId
 /**
@@ -8,13 +10,51 @@ import {getData} from "./dataStore"
  * @param {boolean} isPublic
  * @returns {channelId: number } 
  */ 
-//Rachel
 function channelsCreateV1 (authUserId, name, isPublic) {
-    //Logic:
-    //Creates a channel that contains information such as
-    //authUserId, name of channel and whether it's public or not
-    
-    return {channelId: 1};
+  //Logic:
+  //Creates a channel that contains information such as
+  //authUserId, name of channel and whether it's public or not
+
+  const data = getData();
+  if ( name.length > 20 || name.length < 1 ) {
+      return ERROR;
+  }
+
+  //Does authUserId exist?
+  let foundUser = data.users.filter(e => e.uId === authUserId);
+  if (foundUser.length === 0) {
+    return ERROR;
+  }
+
+
+  const ownerMembers = [];
+  const allMembers = [];
+  let channelId = Object.keys(data.channels).length;
+  
+  //Iterate through the data.users arragy
+  data.users.forEach((e) => {
+    if (e.uId === authUserId) {
+
+      //Channel owner user found, add their userId
+      ownerMembers.push(e.uId);
+      allMembers.push(e.uId);
+      let newChannel = {
+        channelId,
+        channelName: name,
+        ownerMembers,
+        allMembers,
+        isPublic, 
+      };
+      //Track the user's enrolled channel
+      e.enrolledChannelsId.push(channelId);
+      
+      //Add new channel 
+      data.channels.push(newChannel);
+    }
+  });
+  // console.log(channelId);
+
+  return { channelId };
 }
 
 // Given the authUserId, 
