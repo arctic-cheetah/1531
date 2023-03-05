@@ -14,7 +14,7 @@ let data = {
       email: 'boost@lol.com.au',
       status: 'Sleeping',
       password: "lolLOL2320",
-      enrolledChannelsId : [1] //Keep track of the channels a user as enrolled in.
+      enrolledChannelsId : [1,2,3,4,5] //Keep track of the channels a user as enrolled in.
     },
     {
       uId: 2, 
@@ -34,8 +34,9 @@ let data = {
     {
       channelId: 1,
       channelName: 'boost_chat',
-      channelOwner: {},
-      iisPublic: true, 
+      ownerMembers: [1],
+      allMembers : [1], // Keep track of the users inside a channel
+      isPublic: true, 
       messages: 
       {
         messageId: 0,
@@ -44,8 +45,8 @@ let data = {
         attachment : "https://wwww.insertURLHERE.com/test.png", //If files or photos attached in a message
         timeSent: 1, //When was the message sent in milliSeconds since UNIX-TIME
       },
-      usersIdEnrolled : [1] // Keep track of the users inside a channel
     }
+    //..... More objects here
   ] 
 }
 

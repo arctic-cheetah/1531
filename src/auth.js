@@ -85,6 +85,9 @@ export function authRegisterV1 (email, password, nameFirst, nameLast) {
     nameFirst,
     nameLast,
     email,
+    status : "",
+    password,
+    enrolledChannelsId : []
   });
 
   return {authUserId: uId}
