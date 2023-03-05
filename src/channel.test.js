@@ -21,43 +21,43 @@ beforeEach(() => {
 // Error case: Below
 
 
-// describe('channelJoinV1', () => {
-//   // Main cases:
+describe('channelJoinV1', () => {
+  // Main cases:
 
-//   // Error cases:
-//   test('Testing channelJoinV1: the authorised user is already a member of the channel', () => {
-//     const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
-//     const user0 = authRegisterV1('z123456789@unsw.edu.au', '123456', 'Bill', 'White');
-//     const channel = channelsCreateV1(user.authUserId, 'channel_1', true);
-//     const Join = channelJoinV1(user0.authUserId, channel.channelId);
-//     const answer = channelJoinV1(user0.authUserId, channel.channelId);
-//     expect(answer).toMatchObject({ ERROR });
-//   });
+  // Error cases:
+  test('Testing channelJoinV1: the authorised user is already a member of the channel', () => {
+    const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const user0 = authRegisterV1('z123456789@unsw.edu.au', '123456', 'Bill', 'White');
+    const channel = channelsCreateV1(user.authUserId, 'channel_1', true);
+    const Join = channelJoinV1(user0.authUserId, channel.channelId);
+    const answer = channelJoinV1(user0.authUserId, channel.channelId);
+    expect(answer).toMatchObject({ ERROR });
+  });
 
-//   test('Testing channelJoinV1: channelId does not refer to a valid channel', () => {
-//     const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
-//     const user0 = authRegisterV1('z123456789@unsw.edu.au', '123456', 'Bill', 'White');
-//     const channel = channelsCreateV1(user.authUserId, 'channel_1', true);
-//     const answer = channelJoinV1(user0.authUserId, 5);
-//     expect(answer).toMatchObject({ ERROR });
-//   });
+  test('Testing channelJoinV1: channelId does not refer to a valid channel', () => {
+    const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const user0 = authRegisterV1('z123456789@unsw.edu.au', '123456', 'Bill', 'White');
+    const channel = channelsCreateV1(user.authUserId, 'channel_1', true);
+    const answer = channelJoinV1(user0.authUserId, 5);
+    expect(answer).toMatchObject({ ERROR });
+  });
 
-//   test('Testing channelJoinV1: channelId refers to a channel that is private', () => {
-//     const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
-//     const user0 = authRegisterV1('z123456789@unsw.edu.au', '123456', 'Bill', 'White');
-//     const channel = channelsCreateV1(user.authUserId, 'channel_1', false);
-//     const answer = channelJoinV1(user0.authUserId, channel.channelId);
-//     expect(answer).toMatchObject({ ERROR });
-//   });
+  test('Testing channelJoinV1: channelId refers to a channel that is private', () => {
+    const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const user0 = authRegisterV1('z123456789@unsw.edu.au', '123456', 'Bill', 'White');
+    const channel = channelsCreateV1(user.authUserId, 'channel_1', false);
+    const answer = channelJoinV1(user0.authUserId, channel.channelId);
+    expect(answer).toMatchObject({ ERROR });
+  });
 
-//   test('Testing channelJoinV1: authUserId is invalid', () => {
-//     const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
-//     const user0 = authRegisterV1('z123456789@unsw.edu.au', '123456', 'Bill', 'White');
-//     const channel = channelsCreateV1(user.authUserId, 'channel_1', true);
-//     const answer = channelJoinV1(5, channel.channelId);
-//     expect(answer).toMatchObject({ ERROR });
-//   });
-// });
+  test('Testing channelJoinV1: authUserId is invalid', () => {
+    const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const user0 = authRegisterV1('z123456789@unsw.edu.au', '123456', 'Bill', 'White');
+    const channel = channelsCreateV1(user.authUserId, 'channel_1', true);
+    const answer = channelJoinV1(5, channel.channelId);
+    expect(answer).toMatchObject({ ERROR });
+  });
+});
 
 
 describe('channelDetailsV1', () => {
@@ -112,6 +112,6 @@ describe('channelDetailsV1', () => {
   });
 
   // Main cases:
-  
+
   // Edge cases:
 });
