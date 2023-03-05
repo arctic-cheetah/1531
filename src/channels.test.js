@@ -79,14 +79,36 @@ describe('channelsCreateV1', () => {
 });  
 
 describe('channelsListV1', () => {
+// Error cases:
+  test('authUserId is invalid', () => {
+    const user = authRegisterV1('Xiangren@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const channel = channelsCreateV1(user.authUserId, 'channel_1', true);
+    expect(channelsListV1(3)).toMatchObject(ERROR);
+  });
+  // Edge case:
+  test('List one specified channel', () => {
+    const user = authRegisterV1('Xiangren@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const channel = channelsCreateV1(user.authUserId, 'channel_1', true);
+    expect(channelsListV1(user.authUserId)).toMatchObject({ channels: [{ channelId: channel.channelId, name: 'channel_1' }] });
+  });
 
-  //Error cases:
-  
-  //Edge case:
+  test('List two specified channels', () => {
+    const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const channel1 = channelsCreateV1(user.authUserId, 'channel_1', true);
+    const channel2 = channelsCreateV1(user.authUserId, 'channel_2', true);
+    expect(channelsListV1(user.authUserId)).toEqual({ channels: [{ channelId: channel1.channelId, name: 'channel_1' }, { channelId: channel2.channelId, name: 'channel_2' }] });
+  });
 
-  //Main case:
-  
-}); 
+  // Main case:
+  test('List channels with the for User 2', () => {
+    const user1 = authRegisterV1('Ashe@unsw.edu.au', '123456', 'Ashe', 'Ruby');
+    const user2 = authRegisterV1('XiangRen@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const channel1 = channelsCreateV1(user1.authUserId, 'channel_1', true);
+    const channel2 = channelsCreateV1(user2.authUserId, 'channel_2', true);
+    expect(channelsListV1(user2.authUserId)).toEqual({ channels: [{ channelId: channel2.channelId, name: 'channel_2' }] });
+  });
+});
+
 
 describe('channelsListAllV1', () => {
 
