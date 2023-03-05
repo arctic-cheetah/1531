@@ -1,6 +1,7 @@
 package-lock.json
 node_modules
 build
+src/main.js
 .DS_store
 coverage/
 .nyc_output

@@ -34,8 +34,9 @@ let data = {
     {
       channelId: 1,
       channelName: 'boost_chat',
-      channelOwner: {},
-      iisPublic: true, 
+      ownerMembers: [1],
+      allMembers : [1], // Keep track of the users inside a channel
+      isPublic: true, 
       messages: 
       {
         messageId: 0,
@@ -44,7 +45,6 @@ let data = {
         attachment : "https://wwww.insertURLHERE.com/test.png", //If files or photos attached in a message
         timeSent: 1, //When was the message sent in milliSeconds since UNIX-TIME
       },
-      usersIdEnrolled : [1] // Keep track of the users inside a channel
     }
   ] 
 }

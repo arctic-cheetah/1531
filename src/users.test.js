@@ -35,7 +35,7 @@ describe('userProfileV1', () => {
     test('uId and autherUserId are different', () => {
         let user1 = {email : "Alison@hello.com", password : "ianfeDAWD24", nameFirst: "Alison", nameLast: "Patman"};
         let user1Auth = authRegisterV1(user1.email, user1.password, user1.nameFirst, user1.nameLast);
-        let authUserId = user1Auth.authUserId - 1000000;
+        let authUserId = user1Auth.authUserId - 2;
         let uId = user1Auth.authUserId - 20;
         expect(userProfileV1(authUserId, uId)).toStrictEqual(ERROR);
     });
