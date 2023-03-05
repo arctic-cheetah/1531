@@ -16,6 +16,7 @@ function channelsCreateV1 (authUserId, name, isPublic) {
   //authUserId, name of channel and whether it's public or not
 
   const data = getData();
+  //Is the channel name formatted correctly?
   if ( name.length > 20 || name.length < 1 ) {
       return ERROR;
   }
@@ -52,7 +53,6 @@ function channelsCreateV1 (authUserId, name, isPublic) {
       data.channels.push(newChannel);
     }
   });
-  // console.log(channelId);
 
   return { channelId };
 }
@@ -66,7 +66,6 @@ function channelsCreateV1 (authUserId, name, isPublic) {
  * }
  */ 
 function channelsListV1 (authUserId) {
-  //Go through the data base and fetch the user's channels
   const data = getData();
 
   //Does authUserId exist?
@@ -88,7 +87,6 @@ function channelsListV1 (authUserId) {
     //Add condition to fetch private/public channels in future
     res.push({channelId: c_data.channelId, name: c_data.channelName});
   });
-  // console.log(res);
   return { channels : res };
   
 }

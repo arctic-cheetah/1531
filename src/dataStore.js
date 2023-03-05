@@ -46,6 +46,7 @@ let data = {
         timeSent: 1, //When was the message sent in milliSeconds since UNIX-TIME
       },
     }
+    //..... More objects here
   ] 
 }
 
