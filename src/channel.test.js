@@ -22,195 +22,195 @@ beforeEach(() => {
 // Error case: Below
 
 
-// describe('channelJoinV1', () => {
+describe('channelJoinV1', () => {
 
 
-//   // Error cases:
+  // Error cases:
 
-//   test('authUserId is invalid', () => {
-//     const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
-//     const user0 = authRegisterV1('z123456789@unsw.edu.au', '123456', 'Bill', 'White');
-//     const channel = channelsCreateV1(user.authUserId, 'channel_1', true);
-//     const answer = channelJoinV1(5, channel.channelId);
-//     expect(answer).toMatchObject(ERROR);
-//   });
+  test('authUserId is invalid', () => {
+    const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const user0 = authRegisterV1('z123456789@unsw.edu.au', '123456', 'Bill', 'White');
+    const channel = channelsCreateV1(user.authUserId, 'channel_1', true);
+    const answer = channelJoinV1(5, channel.channelId);
+    expect(answer).toMatchObject(ERROR);
+  });
 
-//   test('channelId does not refer to a valid channel', () => {
-//     const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
-//     const user0 = authRegisterV1('z123456789@unsw.edu.au', '123456', 'Bill', 'White');
-//     const channel = channelsCreateV1(user.authUserId, 'channel_1', true);
-//     const answer = channelJoinV1(user0.authUserId, 5);
-//     expect(answer).toMatchObject(ERROR);
-//   });
+  test('channelId does not refer to a valid channel', () => {
+    const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const user0 = authRegisterV1('z123456789@unsw.edu.au', '123456', 'Bill', 'White');
+    const channel = channelsCreateV1(user.authUserId, 'channel_1', true);
+    const answer = channelJoinV1(user0.authUserId, 5);
+    expect(answer).toMatchObject(ERROR);
+  });
 
-//   test('the authorised user is already a member of the channel', () => {
-//     const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
-//     const user0 = authRegisterV1('z123456789@unsw.edu.au', '123456', 'Bill', 'White');
-//     const channel = channelsCreateV1(user.authUserId, 'channel_1', true);
-//     const answer = channelJoinV1(user.authUserId, channel.channelId);
-//     expect(answer).toMatchObject(ERROR);
-//   });
+  test('the authorised user is already a member of the channel', () => {
+    const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const user0 = authRegisterV1('z123456789@unsw.edu.au', '123456', 'Bill', 'White');
+    const channel = channelsCreateV1(user.authUserId, 'channel_1', true);
+    const answer = channelJoinV1(user.authUserId, channel.channelId);
+    expect(answer).toMatchObject(ERROR);
+  });
 
-//   test('channelId is a private channel to a global member. Deny enrolment', () => {
-//     const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
-//     const user0 = authRegisterV1('z123456789@unsw.edu.au', '123456', 'Bill', 'White');
-//     const channel = channelsCreateV1(user.authUserId, 'channel_1', false);
-//     const answer = channelJoinV1(user0.authUserId, channel.channelId);
-//     expect(answer).toMatchObject(ERROR);
-//   });
+  test('channelId is a private channel to a global member. Deny enrolment', () => {
+    const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const user0 = authRegisterV1('z123456789@unsw.edu.au', '123456', 'Bill', 'White');
+    const channel = channelsCreateV1(user.authUserId, 'channel_1', false);
+    const answer = channelJoinV1(user0.authUserId, channel.channelId);
+    expect(answer).toMatchObject(ERROR);
+  });
 
 
-//   test('channelId is a private channel to a global owner. Allow enrolment', () => {
-//     const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
-//     const user0 = authRegisterV1('z123456789@unsw.edu.au', '123456', 'Bill', 'White');
-//     const channel = channelsCreateV1(user0.authUserId, 'channel_1', false);
-//     expect(channelJoinV1(user.authUserId, channel.channelId)).toMatchObject({});
-//   });
+  test('channelId is a private channel to a global owner. Allow enrolment', () => {
+    const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const user0 = authRegisterV1('z123456789@unsw.edu.au', '123456', 'Bill', 'White');
+    const channel = channelsCreateV1(user0.authUserId, 'channel_1', false);
+    expect(channelJoinV1(user.authUserId, channel.channelId)).toMatchObject({});
+  });
 
   
 
 
 
-//    // Main cases:
-//    test('Testing channelJoinV1',() => {
-//     const user = authRegisterV1('XiangRen@unsw.edu.au', '123456', 'Xiang', 'Ren');
-//     const user0 = authRegisterV1('z45452255@hotmail.com.au', '123456', 'Bill', 'White');
-//     const channel = channelsCreateV1(user.authUserId, 'channel_1', true);
-//     channelJoinV1(user0.authUserId, channel.channelId);
-//     let res = channelDetailsV1(user.authUserId,channel.channelId);
-//     console.log(res);
-//     expect(res).toStrictEqual(
-//       {
-//         name:'Xiang',
-//         isPublic:true,
-//         allMembers: [
-//           {
-//             uId: user.authUserId,
-//             email: 'XiangRen@unsw.edu.au',
-//             nameFirst: 'Xiang',
-//             nameLast: 'Ren',
-//             handleStr: 'xiangren'
-//           },
-//           {
-//             uId: user0.authUserId,
-//             email: 'z45452255@hotmail.com.au',
-//             nameFirst: 'Bill',
-//             nameLast: 'White',
-//             handleStr: 'billwhite'
-//           }
-//         ],
-//         ownerMembers: [
-//           {
-//             uId: user.authUserId,
-//             email: 'XiangRen@unsw.edu.au',
-//             nameFirst: 'Xiang',
-//             nameLast: 'Ren',
-//             handleStr: 'xiangren'
-//           }
-//         ]
-//       }
-//     )
-//   });
+   // Main cases:
+   test('Testing channelJoinV1',() => {
+    const user = authRegisterV1('XiangRen@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const user0 = authRegisterV1('z45452255@hotmail.com.au', '123456', 'Bill', 'White');
+    const channel = channelsCreateV1(user.authUserId, 'channel_1', true);
+    channelJoinV1(user0.authUserId, channel.channelId);
+    let res = channelDetailsV1(user.authUserId,channel.channelId);
+    console.log(res);
+    expect(res).toStrictEqual(
+      {
+        name:'Xiang',
+        isPublic:true,
+        allMembers: [
+          {
+            uId: user.authUserId,
+            email: 'XiangRen@unsw.edu.au',
+            nameFirst: 'Xiang',
+            nameLast: 'Ren',
+            handleStr: 'xiangren'
+          },
+          {
+            uId: user0.authUserId,
+            email: 'z45452255@hotmail.com.au',
+            nameFirst: 'Bill',
+            nameLast: 'White',
+            handleStr: 'billwhite'
+          }
+        ],
+        ownerMembers: [
+          {
+            uId: user.authUserId,
+            email: 'XiangRen@unsw.edu.au',
+            nameFirst: 'Xiang',
+            nameLast: 'Ren',
+            handleStr: 'xiangren'
+          }
+        ]
+      }
+    )
+  });
 
-// });
+});
 
 
-// describe('channelDetailsV1', () => {
-//   // Error cases:
-//   test('Non-existent authUserId', () => {
-//     const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
-//     const channel = channelsCreateV1(user.authUserId, 'channel_1', true);
-//     expect(channelDetailsV1(-1E5, channel.channelId)).toMatchObject(ERROR);
-//   });
+describe('channelDetailsV1', () => {
+  // Error cases:
+  test('Non-existent authUserId', () => {
+    const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const channel = channelsCreateV1(user.authUserId, 'channel_1', true);
+    expect(channelDetailsV1(-1E5, channel.channelId)).toMatchObject(ERROR);
+  });
 
-//   test('Non-existent channelId', () => {
-//     const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
-//     const channel = channelsCreateV1(user.authUserId, 'channel_1', true);
-//     expect(channelDetailsV1(user.authUserId, -0xFFFFFFFF)).toMatchObject(ERROR);
-//   });
+  test('Non-existent channelId', () => {
+    const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const channel = channelsCreateV1(user.authUserId, 'channel_1', true);
+    expect(channelDetailsV1(user.authUserId, -0xFFFFFFFF)).toMatchObject(ERROR);
+  });
 
-//   test('User2 is not a member of User1\'s channel', () => {
-//     const user1 = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
-//     const user2 = authRegisterV1('Bob@unsw.edu.au', 'fmkagAFN23', 'Bob', 'Doe');
-//     const channel = channelsCreateV1(user1.authUserId, 'channel_1', true);
-//     expect(channelDetailsV1(user2.authUserId, channel.channelId)).toMatchObject(ERROR);
-//   });
+  test('User2 is not a member of User1\'s channel', () => {
+    const user1 = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const user2 = authRegisterV1('Bob@unsw.edu.au', 'fmkagAFN23', 'Bob', 'Doe');
+    const channel = channelsCreateV1(user1.authUserId, 'channel_1', true);
+    expect(channelDetailsV1(user2.authUserId, channel.channelId)).toMatchObject(ERROR);
+  });
 
-//   // Main cases:
-//   test('User 1 wants info on their channel', () => {
-//     const user1 = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
-//     const channel = channelsCreateV1(user1.authUserId, 'channel_1', true);
-//     expect(channelDetailsV1(user1.authUserId, channel.channelId)).toStrictEqual(
-//       {
-//         name: 'Xiang',
-//         isPublic: true,
-//         allMembers: [
-//           {
-//             uId: user1.authUserId,
-//             email: 'Xiang@unsw.edu.au',
-//             nameFirst: 'Xiang',
-//             nameLast: 'Ren',
-//             handleStr: 'xiangren'
-//           }
-//         ],
-//         ownerMembers: [
-//           {
-//             uId: user1.authUserId,
-//             email: 'Xiang@unsw.edu.au',
-//             nameFirst: 'Xiang',
-//             nameLast: 'Ren',
-//             handleStr: 'xiangren'
-//           }
-//         ]
-//       }
-//     );
-//   });
+  // Main cases:
+  test('User 1 wants info on their channel', () => {
+    const user1 = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const channel = channelsCreateV1(user1.authUserId, 'channel_1', true);
+    expect(channelDetailsV1(user1.authUserId, channel.channelId)).toStrictEqual(
+      {
+        name: 'Xiang',
+        isPublic: true,
+        allMembers: [
+          {
+            uId: user1.authUserId,
+            email: 'Xiang@unsw.edu.au',
+            nameFirst: 'Xiang',
+            nameLast: 'Ren',
+            handleStr: 'xiangren'
+          }
+        ],
+        ownerMembers: [
+          {
+            uId: user1.authUserId,
+            email: 'Xiang@unsw.edu.au',
+            nameFirst: 'Xiang',
+            nameLast: 'Ren',
+            handleStr: 'xiangren'
+          }
+        ]
+      }
+    );
+  });
 
-//   test('User 1 wants info on their channel, with two members inside it', () => {
-//     const dat = getData();
-//     const user1 = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
-//     const user2 = authRegisterV1('DBGW@unsw.edu.au', 'KGNEldar2', 'Don', 'Doe');
-//     const channel = channelsCreateV1(user1.authUserId, 'channel_1', true);
-//     dat.channels[0].allMembers.push({uId: user2.authUserId, email: 'DBGW@unsw.edu.au', nameFirst: 'Don',  nameLast: 'Doe', handleStr: 'dondoe'});
-//     dat.users.find(e => e.uId === user2.authUserId).enrolledChannelsId.push(channel.channelId);
+  test('User 1 wants info on their channel, with two members inside it', () => {
+    const dat = getData();
+    const user1 = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const user2 = authRegisterV1('DBGW@unsw.edu.au', 'KGNEldar2', 'Don', 'Doe');
+    const channel = channelsCreateV1(user1.authUserId, 'channel_1', true);
+    dat.channels[0].allMembers.push({uId: user2.authUserId, email: 'DBGW@unsw.edu.au', nameFirst: 'Don',  nameLast: 'Doe', handleStr: 'dondoe'});
+    dat.users.find(e => e.uId === user2.authUserId).enrolledChannelsId.push(channel.channelId);
     
-//     //Add user2 to the channel
-//     expect(channelDetailsV1(user1.authUserId, channel.channelId)).toStrictEqual(
-//       {
-//         name: 'Xiang',
-//         isPublic: true,
-//         ownerMembers: [
-//           {
-//             uId: user1.authUserId,
-//             email: 'Xiang@unsw.edu.au',
-//             nameFirst: 'Xiang',
-//             nameLast: 'Ren',
-//             handleStr: 'xiangren'
-//           }
-//         ],
-//         allMembers: [
-//           {
-//             uId: user1.authUserId,
-//             email: 'Xiang@unsw.edu.au',
-//             nameFirst: 'Xiang',
-//             nameLast: 'Ren',
-//             handleStr: 'xiangren'
-//           },
-//           {
-//             uId: user2.authUserId,
-//             email: 'DBGW@unsw.edu.au',
-//             nameFirst: 'Don',
-//             nameLast: 'Doe',
-//             handleStr: 'dondoe'
-//           }
-//         ]
-//       }
-//     );
-//   });
+    //Add user2 to the channel
+    expect(channelDetailsV1(user1.authUserId, channel.channelId)).toStrictEqual(
+      {
+        name: 'Xiang',
+        isPublic: true,
+        ownerMembers: [
+          {
+            uId: user1.authUserId,
+            email: 'Xiang@unsw.edu.au',
+            nameFirst: 'Xiang',
+            nameLast: 'Ren',
+            handleStr: 'xiangren'
+          }
+        ],
+        allMembers: [
+          {
+            uId: user1.authUserId,
+            email: 'Xiang@unsw.edu.au',
+            nameFirst: 'Xiang',
+            nameLast: 'Ren',
+            handleStr: 'xiangren'
+          },
+          {
+            uId: user2.authUserId,
+            email: 'DBGW@unsw.edu.au',
+            nameFirst: 'Don',
+            nameLast: 'Doe',
+            handleStr: 'dondoe'
+          }
+        ]
+      }
+    );
+  });
 
 
-//   // Edge cases:
-// });
+  // Edge cases:
+});
 
 
 //Helper functions for channelMessages
