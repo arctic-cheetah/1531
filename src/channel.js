@@ -61,8 +61,7 @@ export function channelJoinV1 (authUserId, channelId) {
   return {};
 }
 
-
-// Xiang
+// Rachel
 // Invite Uid into the channel using channelid
 /**
  * @param {number} authUserId
@@ -71,7 +70,56 @@ export function channelJoinV1 (authUserId, channelId) {
  * @returns {}
  */
 export function channelInviteV1 (authUserId, channelId, uId) {
-  return { };
+  const data = getData();
+
+  //Is authUserId vaid??
+  let foundUser = data.users.filter(e => e.uId === authUserId);
+  if (foundUser.length === 0) {
+    return ERROR;
+  }
+
+  //Does uId refer to a valid user??
+  let founduId = data.users.filter(e => e.uId === uId);
+  if (founduId.length === 0) {
+    return ERROR;
+  }
+
+  //Is channelId valid??
+  let foundChannel = data.channels.filter(e => e.channelId === channelId);
+  if (foundChannel.length === 0) {
+    return ERROR;
+  }
+
+  let curr_channel = foundChannel[0];
+  //Is authUserId a member of the channel??
+
+  let isMember = curr_channel.allMembers.includes(authUserId);
+  if (!isMember) {
+    return ERROR;
+  }
+
+  //Is uId a member of the channel??
+  let uIdisMember = curr_channel.allMembers.includes(uId);
+  if (uIdisMember) {
+    return ERROR;
+  }
+
+  data.channels.forEach((e) => {
+    if (e.channelId === channelId) {
+
+      //Channel found, add user to channel
+      e.allMembers.push(uId);
+      
+      //Track the user's enrolled channel
+      data.users.forEach((e) => {
+        if (e.uId === uId) {
+          e.enrolledChannelsId.push(channelId);
+        }
+      });
+    }
+  });
+  
+  return {};
 }
 
 

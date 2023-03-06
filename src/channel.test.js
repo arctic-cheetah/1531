@@ -114,6 +114,51 @@ describe('channelJoinV1', () => {
 
 });
 
+describe('channelInviteV1', () => {
+  //Error cases:
+  test('Invalid authUserId', () => {
+    const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const channel = channelsCreateV1(user.authUserId, 'channel_1', true);
+    expect(channelInviteV1(-1E5, channel.channelId, user.authUserId)).toMatchObject(ERROR);
+  });
+
+  test('channelId does not refer to a valid channel', () => {
+    const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const channel = channelsCreateV1(user.authUserId, 'channel_1', true);
+    expect(channelInviteV1(user.authUserId, -0xFFFFFFFF, user.authUserId)).toMatchObject(ERROR);
+  });
+
+  test('Invalid uId', () => {
+    const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const channel = channelsCreateV1(user.authUserId, 'channel_1', true);
+    expect(channelInviteV1(user.authUserId, channel.channelId, -1E5)).toMatchObject(ERROR);
+  });
+
+  test('uId is already member of the channel', () => {
+    const user = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const channel = channelsCreateV1(user.authUserId, 'channel_1', true);
+    expect(channelInviteV1(user.authUserId, channel.channelId, user.authUserId)).toMatchObject(ERROR);
+  });
+
+  test('authUserId is not member of channel', () => {
+    const user1 = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const user2 = authRegisterV1('Bob@unsw.edu.au', 'fmkagAFN23', 'Bob', 'Doe');
+    const channel = channelsCreateV1(user1.authUserId, 'channel_1', true);
+    expect(channelInviteV1(user2.authUserId, channel.channelId, user1.authUserId)).toMatchObject(ERROR);
+    expect(channelInviteV1(user2.authUserId, channel.channelId, user2.authUserId)).toMatchObject(ERROR);
+  });
+
+  // Edge cases:
+
+  // Main cases:
+  test('user1 invites user2 to their channel', () => {
+    const user1 = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const user2 = authRegisterV1('Bob@unsw.edu.au', 'fmkagAFN23', 'Bob', 'Doe');
+    const channel = channelsCreateV1(user1.authUserId, 'channel_1', true);
+    expect(channelInviteV1(user1.authUserId, channel.channelId, user2.authUserId)).toMatchObject({});
+  });
+
+});
 
 describe('channelDetailsV1', () => {
   // Error cases:
