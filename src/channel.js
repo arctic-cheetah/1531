@@ -15,7 +15,7 @@ export function channelJoinV1 (authUserId, channelId) {
   return {};
 }
 
-// Xiang
+// Rachel
 // Invite Uid into the channel using channelid
 /**
  * @param {number} authUserId
@@ -24,7 +24,8 @@ export function channelJoinV1 (authUserId, channelId) {
  * @returns {}
  */
 export function channelInviteV1 (authUserId, channelId, uId) {
-  return { };
+
+  return {};
 }
 
 // Given the authUserId, channelId and start
