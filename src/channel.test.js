@@ -96,6 +96,12 @@ describe('channelInviteV1', () => {
   // Edge cases:
 
   // Main cases:
+  test('user1 invites user2 to their channel', () => {
+    const user1 = authRegisterV1('Xiang@unsw.edu.au', '123456', 'Xiang', 'Ren');
+    const user2 = authRegisterV1('Bob@unsw.edu.au', 'fmkagAFN23', 'Bob', 'Doe');
+    const channel = channelsCreateV1(user1.authUserId, 'channel_1', true);
+    expect(channelInviteV1(user1.authUserId, channel.channelId, user2.authUserId)).toMatchObject({});
+  });
 
 });
 
