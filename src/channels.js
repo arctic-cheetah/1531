@@ -45,6 +45,7 @@ function channelsCreateV1 (authUserId, name, isPublic) {
         ownerMembers,
         allMembers,
         isPublic, 
+        messages: []
       };
       //Track the user's enrolled channel
       e.enrolledChannelsId.push(channelId);

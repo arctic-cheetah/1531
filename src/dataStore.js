@@ -14,7 +14,8 @@ let data = {
       email: 'boost@lol.com.au',
       status: 'Sleeping',
       password: "lolLOL2320",
-      enrolledChannelsId : [1,2,3,4,5] //Keep track of the channels a user as enrolled in.
+      enrolledChannelsId : [1,2,3,4,5], //Keep track of the channels a user as enrolled in.
+      isGlobalOwner: true
     },
     {
       uId: 2, 
@@ -26,7 +27,8 @@ let data = {
       email: '1234@lol.com.au',
       status: 'Sleeping',
       password: "akfnGND23",
-      enrolledChannelsId : [1] //Keep track of the channels a user as enrolled in.
+      enrolledChannelsId : [1], //Keep track of the channels a user as enrolled in.
+      isGlobalOwner: false
     }
   ],
   channels : 
@@ -38,13 +40,15 @@ let data = {
       allMembers : [1], // Keep track of the users inside a channel
       isPublic: true, 
       messages: 
-      {
-        messageId: 0,
-        uId: 1,
-        message: 'Hi everyone',
-        attachment : "https://wwww.insertURLHERE.com/test.png", //If files or photos attached in a message
-        timeSent: 1, //When was the message sent in milliSeconds since UNIX-TIME
-      },
+      [
+        {
+          messageId: 0,
+          uId: 1,
+          message: 'Hi everyone',
+          attachment : "https://wwww.insertURLHERE.com/test.png", //If files or photos attached in a message
+          timeSent: 1, //When was the message sent in milliSeconds since UNIX-TIME
+        }
+      ],
     }
     //..... More objects here
   ] 

@@ -12,8 +12,55 @@ const ERROR = { error: 'error' };
  * @returns {}
  */
 export function channelJoinV1 (authUserId, channelId) {
+  const data = getData();
+
+  
+  //Does the user exist
+  let foundUser = data.users.filter(e => e.uId === authUserId);
+  if (foundUser.length === 0) {
+    return ERROR;
+  } 
+
+  //Does the channel exist
+  let foundChannel = data.channels.filter(e => e.channelId === channelId);
+  if (foundChannel.length === 0) {
+    return ERROR;
+  }
+
+  //Is the user already a member of the channel
+  let isMember = foundUser[0].enrolledChannelsId.includes(channelId);
+  if (isMember) {
+    return ERROR;
+  }
+
+  //Don't add anyone if the channel is private, and the user is not a global owner
+  if (foundChannel[0].isPublic === false && !foundUser[0].isGlobalOwner) {
+    return ERROR;
+
+  }
+
+  //Add the user (global member) to the channel inside allMembers
+  let userInfo = {
+    uId : foundUser[0].uId,
+    email : foundUser[0].email,
+    nameFirst : foundUser[0].nameFirst,
+    nameLast : foundUser[0].nameLast,
+    handleStr : foundUser[0].userName
+  };
+  foundChannel[0].allMembers.push(userInfo);
+
+
+  //Update the user's enrolled channels
+  foundUser[0].enrolledChannelsId.push(channelId);
+
+  //Check for global owners, and add to as needed ownerMembers to the channel
+  if (foundUser[0].isGlobalOwner) {
+    foundChannel[0].ownerMembers.push(userInfo);  
+  }
+
   return {};
 }
+
 
 // Xiang
 // Invite Uid into the channel using channelid
@@ -27,13 +74,17 @@ export function channelInviteV1 (authUserId, channelId, uId) {
   return { };
 }
 
-// Given the authUserId, channelId and start
-// return an array of messages for that channel
+
 /**
  * @param {number} authUserId
  * @param {number} channelId
  * @param {number} start
  * @returns {messages: [], start: number, end: number}
+ * 
+ * Given the authUserId, channelId and start.
+ * return an array of messages for that channel
+ * from newest to oldest
+ * 
  */
 // Joules
 export function channelMessagesV1 (authUserId, channelId, start) {
@@ -41,18 +92,51 @@ export function channelMessagesV1 (authUserId, channelId, start) {
   // Search through the dataBase for the channelId
   // And fetch the messages for the channel
   // let messages = dataBase.channel.find(e => e.channelId == channelId).message
+  
+  const data = getData();
+
+  //Does the authUserId exist?
+  let foundUser = data.users.filter(e => e.uId === authUserId);
+  if (foundUser.length === 0) {
+    return ERROR;
+  }
+  
+  //Does the channelId exist?
+  let foundChannel = data.channels.filter(e => e.channelId === channelId);
+  if (foundChannel.length === 0) {
+    return ERROR;
+  }
+
+  //Is the user a member of the channel?
+  let isMember = foundUser[0].enrolledChannelsId.includes(channelId);
+  if (!isMember) {
+    return ERROR;
+  }
+
+  //Start is greater than the number of messages in the channel?
+  if (start > foundChannel[0].messages.length) {
+    return ERROR;
+  }
+
+  //CANNOT RELY ON messageId to sort times and return correct value!
+  //Need to use timeStamp
+  //Assume messages are sorted
+  //Assume two messages can be sent at the same time
+  let rawMessages = foundChannel[0].messages;
+
+  //Select 50 messages (page)
+  let end = start + 50;
+  let messages = rawMessages.slice(start, end);
+
+  //Check if 'end' = 'start + 50' exceeds the number of messages
+  if (end > rawMessages.length) {
+    end = -1
+  }
 
   return {
-    messages: [
-      {
-        messageId: 1,
-        uId: 1,
-        message: 'Hello world',
-        timeStamp: 1582426789
-      }
-    ],
-    start: 0,
-    end: 50
+    messages,
+    start,
+    end
   };
 }
 
@@ -115,6 +199,7 @@ export function channelDetailsV1 (authUserId, channelId) {
       handleStr: e.userName
     })
   );
+
 
 
   //Fetch details about the channel

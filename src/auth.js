@@ -71,15 +71,9 @@ export function authRegisterV1 (email, password, nameFirst, nameLast) {
   //Generate new user ID
   let uId = getUUIDv1();
 
-  //Is the dataStore initially empty?
-  //Add permision for global owner
-  // if (Object.keys(data).length === 0) {
-  //   uId = 1;
-  // }
-
-
-  //Create new account
-  data.users.push({
+  
+  
+  let newUser = {
     uId,
     userName,
     nameFirst,
@@ -87,8 +81,18 @@ export function authRegisterV1 (email, password, nameFirst, nameLast) {
     email,
     status : "",
     password,
-    enrolledChannelsId : []
-  });
+    enrolledChannelsId : [],
+    isGlobalOwner: false,
+  };
+
+  //Is the dataStore initially empty?
+  //Add permision for global owner
+  if (data.users.length === 0) {
+    newUser.isGlobalOwner = true;
+  }
+
+  //Create new account
+  data.users.push(newUser);
 
   return {authUserId: uId}
 
